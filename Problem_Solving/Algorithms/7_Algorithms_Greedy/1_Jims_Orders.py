@@ -85,11 +85,8 @@ def also_accessing_enum(orders):
     orders = list(enumerate(orders, start=0))
     print(orders)
 
-# accessing_enum(a)
-# 0 [1, 8]
-# 1 [3, 4]
-# 2 [5, 16]
-# 3 [6, 1]
+# also_accessing_enum(a)
+# [(0, [1, 8]), (1, [3, 4]), (2, [5, 16]), (3, [6, 1])]
 
 #? Below is a shorter, more complex method to get the answer
 #? Using list(enumerate()) and list comprehension
@@ -110,5 +107,5 @@ def jimOrders_enum(orders):
     return [order[0] for order in orders]
 
 
-print(jimOrders_enum(b))
-# [2, 4, 1, 3]
+# print(jimOrders_enum(b))
+# [4, 2, 5, 1, 3]
