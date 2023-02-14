@@ -1,38 +1,25 @@
 # https://www.hackerrank.com/challenges/python-time-delta/problem
-#TODO This problem
+# https://www.w3schools.com/python/python_datetime.asp
 
-a = 'Sun 10 May 2015 01:00:40 -0200'
-b = 'Sun 10 May 2015 13:54:36 -0000'
+#* You are given two timestamps of one such post that a user can see on his newsfeed in the following format:
+#* 
+#* Day dd Mon yyyy hh:mm:ss +xxxx
+#* 
+#* Here +xxxx represents the time zone. Your task is to print the absolute difference (in seconds) between them.
 
+
+from datetime import datetime
+#? So that methods can be datetime.method()
+#? If not methods need to be datetime.datetime.method()
+
+a = 'Sat 24 Mar 2170 03:47:07 +0430'
+b = 'Mon 30 Dec 2272 20:27:41 -1000'
 
 def time_delta(t1, t2):
-    def epochCalc(time):
-        epoch_year = (int(time[11:16]) - 1970) * 365 * 24 * 60 * 60
+    t1 = datetime.timestamp(datetime.strptime(t1, '%a %d %b %Y %H:%M:%S %z')) #? Check second link for reference
+    t2 = datetime.timestamp(datetime.strptime(t2, '%a %d %b %Y %H:%M:%S %z')) #? strptime() creates a datetime object
+    return(str(abs(int(t1 - t2))))                                            #? timestamp() gets the seconds since epoch
+                                                                              #? Epoch is 01/01/1970 00:00:00 UTC
 
-        match time[7:10]:
-            case 'Jan':
-                epoch_month = 0
-            case 'May':
-                pass
-        
-        if time[-5] == '-': #? e.g. -0700
-            epoch_hour = (int(time[-14:-12]) - int(time[-4:-2])) * 60 * 60
-            epoch_minute = (int(time[-11:-9]) - int(time[-2:])) * 60
-
-        else: #? e.g. +0700
-            epoch_hour = (int(time[-14:-12]) + int(time[-4:-2])) * 60 * 60
-            epoch_minute = (int(time[-11:-9]) + int(time[-2:])) * 60
-
-
-        epoch_second = (int(time[-8:-6]))
-        print(epoch_year, epoch_hour, epoch_minute, epoch_second)
-        
-
-        
-
-    
-    epochCalc(t1)
-        
-        
-
-time_delta(a, b)
+print(time_delta(a, b))
+# 3243222634
