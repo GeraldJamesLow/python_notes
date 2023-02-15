@@ -61,3 +61,5 @@ def getTotalX_two(a, b):
     return len(factors)
 
 print(getTotalX_two(a1,b1))
+# [6, 42]
+# 2
